@@ -16,7 +16,7 @@ jobs:
       - name: Setup php
         uses: shivammathur/setup-php@v2
         with:
-          php-version: '7.4'
+          php-version: '8.1'
       - name: Install deps
         run: |
             composer self-update
@@ -28,7 +28,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        php: ["7.3", "7.4"]
+        php: ["8.0", "8.1"]
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
