@@ -74,7 +74,7 @@ class Auth
      * $auth->createCallback('bearer', 'https://example.com/callback', 'test@test.com', 'password123');
      * </code>
      */
-    public function createCallback($grantType, $redirectUri, $username, $password, $options = [])
+    public function createCallback($grantType, $redirectUri, $username = null, $password = null, $options = [])
     {
         $json = [
             'grantType' => $grantType,
@@ -115,6 +115,11 @@ class Auth
                 'callbackId' => $callbackId,
             ],
         ]));
+
+        if (isset($callback['accessToken'])) {
+            $this->accessToken = $callback['accessToken'];
+            $this->refreshToken = $callback['refreshToken'];
+        }
 
         return $callback;
     }

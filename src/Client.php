@@ -72,7 +72,7 @@ class Client
 
         // Add authorization if found
         $accessToken = (isset($options['auth']) ? $options['auth']['accessToken'] : null) ?? $this->auth->accessToken;
-        if (!empty($accessToken) && $headers['Authorization'] !== false) {
+        if (!empty($accessToken) && ($headers['Authorization'] ?? null) !== false) {
             $headers['Authorization'] = 'Bearer ' . $accessToken;
         }
 
@@ -109,7 +109,7 @@ class Client
                     'resource' => '/subscribe/auth/token',
                     'json' => [
                         'grantType' => 'refresh_token',
-                        'refreshToken' => $this->getRefreshToken(),
+                        'refreshToken' => $this->auth->refreshToken,
                     ],
                 ]);
 

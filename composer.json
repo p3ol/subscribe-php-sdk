@@ -32,7 +32,7 @@
             "php -S localhost:62000"
         ],
         "test": [
-            "./vendor/bin/phpunit"
+            "XDEBUG_MODE=coverage ./vendor/bin/phpunit"
         ],
         "lint": [
             "./vendor/bin/phpcs src/ index.php"
