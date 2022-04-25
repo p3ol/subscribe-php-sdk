@@ -4,14 +4,13 @@ namespace Poool\Subscribe\SDK;
 
 class Offers
 {
-    private $client;
+    private Client $client;
 
     /**
      * @param Client $client - SDK client
      *
-     * @example
      * <code>
-     * $auth = new Offers($client);
+     * $offers = new Offers($client);
      * </code>
      */
     public function __construct($client)
@@ -20,22 +19,22 @@ class Offers
     }
 
     /**
+     * List all available offers
      * @param int $page (optional) Current page of results
      * @param int $count (optional) Count per page
      * @param string $status (optional) Status of the offer (active, archived, all)
-     * @param array[string] $include (optional) List of included slugs
-     * @param array[string] $exclude (optional) List of excluded slugs
-     * @param array[mixed] $options (optional) Guzzle request options
-     * @return array[mixed] Returns generated auth tokens
+     * @param string[] $include (optional) List of included slugs
+     * @param string[] $exclude (optional) List of excluded slugs
+     * @param mixed[] $options (optional) Guzzle request options
+     * @return mixed[] Array of offers objects
      *
-     * @example
      * <code>
      * $offers->list(1, 10, 'active', ['slug1', 'slug2']);
      * </code>
      */
     public function list($page = 1, $count = 10, $status = 'active', $include = [], $exclude = [], $options = [])
     {
-        $tokens = $this->client->request(array_merge($options, [
+        return $this->client->request(array_merge($options, [
             'method' => 'GET',
             'resource' => '/subscribe/offers',
             'query' => [
@@ -46,7 +45,23 @@ class Offers
                 'exclude' => $exclude,
             ],
         ]));
+    }
 
-        return $tokens;
+    /**
+     * Get a particular
+     * @param string $id Offer ID or slug
+     * @param mixed[] $options (optional) Guzzle request options
+     * @return mixed[] Offer object
+     *
+     * <code>
+     * $offers->get('offer-1');
+     * </code>
+     */
+    public function get($id, $options = [])
+    {
+        return $this->client->request(array_merge($options, [
+            'method' => 'GET',
+            'resource' => '/subscribe/offers/' . $id,
+        ]));
     }
 }

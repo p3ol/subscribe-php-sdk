@@ -10,11 +10,11 @@ class Client
     private $clientSecret;
     private $apiUrl;
     private $debug;
-    private $httpClient;
+    private \GuzzleHttp\Client $httpClient;
     private $timeout;
 
-    public $auth;
-    public $offers;
+    public Auth $auth;
+    public Offers $offers;
 
     public function __construct($config, $httpClient = null)
     {
@@ -33,10 +33,9 @@ class Client
     }
 
     /**
-     * @param array[mixed] $options Request options
-     * @return array[mixed] Response from api, always json
+     * @param mixed[] $options Request options
+     * @return mixed[] Response from api, always json
      *
-     * @example
      * <code>
      * $client->request(['method' => 'GET', 'url' => 'https://google.fr']);
      * </code>
@@ -90,10 +89,9 @@ class Client
     }
 
     /**
-     * @param array[mixed] $options Request options
-     * @return array[mixed] Response from api, always json
+     * @param mixed[] $options Request options
+     * @return mixed[] Response from api, always json
      *
-     * @example
      * <code>
      * $client->requestWithRetry(['method' => 'GET', 'url' => 'https://google.fr']);
      * </code>
