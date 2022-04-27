@@ -23,9 +23,9 @@ var_dump($client->offers->list());
 ```
 
 
-## [Documentation](https://poool.dev/docs/subscribe/server/php)
+## [Documentation](https://poool.dev/docs/subscribe/server)
 
-https://poool.dev/docs/subscribe/server/php
+https://poool.dev/docs/subscribe/server
 
 
 ## Contributing
