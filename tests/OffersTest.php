@@ -18,6 +18,7 @@ class OffersTest extends TestCase
     {
         $mock = new MockHandler([
             new Response(200, [], '{ "offers": [{ "id": "offer-1", "name": "My offer"}], "total": 1 }'),
+            new Response(200, [], '{ "offer": { "id": "offer-1", "name": "My offer"} }'),
         ]);
         $handlerStack = HandlerStack::create($mock);
         $httpClient = new \GuzzleHttp\Client(['handler' => $handlerStack]);
@@ -35,5 +36,16 @@ class OffersTest extends TestCase
         $this->assertSame($result['offers'][0]['id'], 'offer-1');
         $this->assertSame($result['offers'][0]['name'], 'My offer');
         $this->assertSame($result['total'], 1);
+    }
+
+    /**
+     * @covers \Poool\Subscribe\SDK\Client::request
+     * @covers \Poool\Subscribe\SDK\Offers::get
+     */
+    public function testGet()
+    {
+        $result = self::$offers->get('offer-1');
+        $this->assertSame($result['offer']['id'], 'offer-1');
+        $this->assertSame($result['offer']['name'], 'My offer');
     }
 }

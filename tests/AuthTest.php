@@ -29,6 +29,8 @@ class AuthTest extends TestCase
             ),
             new Response(200, [], '{ "accessToken": "new access test", "refreshToken": "new refresh test" }'),
             new Response(200, [], '{ "username": "user@test.com", "email": "foo@bar.com" }'),
+            new Response(200, [], '{ "username": "user@test.com" }'),
+            new Response(200, [], '{ "username": "user@test.com" }'),
         ]);
         $handlerStack = HandlerStack::create($mock);
         $httpClient = new \GuzzleHttp\Client(['handler' => $handlerStack]);
@@ -89,5 +91,32 @@ class AuthTest extends TestCase
         $this->assertSame($infos['email'], 'foo@bar.com');
         $this->assertSame(self::$client->auth->accessToken, 'new access test');
         $this->assertSame(self::$client->auth->refreshToken, 'new refresh test');
+    }
+
+    /**
+     * @covers \Poool\Subscribe\SDK\Auth::signup
+     * @covers \Poool\Subscribe\SDK\Client::request
+     */
+    public function testSignup()
+    {
+        $result = self::$auth->signup([
+            'username' => 'user@test.com',
+            'password' => 'password',
+        ]);
+        $this->assertSame($result['username'], 'user@test.com');
+        $this->assertNotContains('password', $result);
+    }
+
+    /**
+     * @covers \Poool\Subscribe\SDK\Auth::set
+     * @covers \Poool\Subscribe\SDK\Client::requestWithRetry
+     * @covers \Poool\Subscribe\SDK\Client::request
+     */
+    public function testSet()
+    {
+        $result = self::$auth->set([
+            'email' => 'test@test.com',
+        ]);
+        $this->assertSame($result['username'], 'user@test.com');
     }
 }

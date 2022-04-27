@@ -159,7 +159,7 @@ class Auth
      * @param mixed[] $account Account information
      * @param mixed[] $options (optional) Guzzle request options
      * @return mixed[] Returns info on the current authenticated user
-     * 
+     *
      * <code>
      * $auth->signup([
      *     'firstName' => 'John',
@@ -185,7 +185,7 @@ class Auth
      * @param mixed[] $updates Account information
      * @param mixed[] $options (optional) Guzzle request options
      * @return mixed[] Returns info on the current authenticated user
-     * 
+     *
      * <code>
      * $auth->set([
      *     'firstName' => 'John',

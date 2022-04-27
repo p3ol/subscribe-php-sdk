@@ -24,7 +24,7 @@ class Payments
      * @param string $offerId Offer ID or slug
      * @param mixed[] $options (optional) Guzzle request options
      * @return mixed[] { intentId }
-     * 
+     *
      * <code>
      * $payments->createIntent('stripe', 'offer-1');
      * </code>
@@ -46,7 +46,7 @@ class Payments
      * @param string $paymentId Payment ID
      * @param mixed[] $options (optional) Guzzle request options
      * @return mixed[] { paymentId }
-     * 
+     *
      * <code>
      * $payments->confirmIntent('stripe', 'payment-1');
      * </code>
@@ -64,7 +64,7 @@ class Payments
      * @param string $gateway Gateway name (stripe, paypal)
      * @param mixed[] $options (optional) Guzzle request options
      * @return mixed[] { intentSecret }
-     * 
+     *
      * <code>
      * $payments->createSetupIntent('stripe');
      * </code>
@@ -83,9 +83,9 @@ class Payments
      * @param string $method Payment method ID
      * @param mixed[] $options (optional) Guzzle request options
      * @return mixed[] { paymentId }
-     * 
+     *
      * <code>
-     * $payments->updatePaymentMethod('stripe', 'pm_1');
+     * $payments->updateSource('stripe', 'pm_1');
      * </code>
      */
     public function updateSource($gateway, $method, $options = [])

@@ -66,7 +66,7 @@ class Customers
      * @param mixed[] $subscriptionData Subscription data
      * @param mixed[] $options (optional) Guzzle request options
      * @return mixed[] Customer object
-     * 
+     *
      * <code>
      * $customers->attachExistingSubscription('customer-1', 'stripe', [
      *     'subscriptionId' => 'sub_12345',
@@ -90,7 +90,7 @@ class Customers
      * @param string $offerId Offer ID or slug
      * @param mixed[] $options (optional) Guzzle request options
      * @return mixed[] Customer object
-     * 
+     *
      * <code>
      * $customers->switchSubscriptionOffer('customer-1', 'subscription-1', 'offer-1');
      * </code>
