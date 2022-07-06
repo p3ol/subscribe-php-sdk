@@ -25,10 +25,7 @@ class Client
         $this->timeout = $config['timeout'] ?? 30000;
         $this->httpClient = $httpClient ?? new \GuzzleHttp\Client();
 
-        $this->auth = new Auth($this, [
-            'accessToken' => $config['accessToken'] ?? null,
-            'refreshToken' => $config['refreshToken'] ?? null,
-        ]);
+        $this->auth = new Auth($this);
         $this->offers = new Offers($this);
     }
 
@@ -69,12 +66,6 @@ class Client
             ]);
         }
 
-        // Add authorization if found
-        $accessToken = (isset($options['auth']) ? $options['auth']['accessToken'] : null) ?? $this->auth->accessToken;
-        if (!empty($accessToken) && ($headers['Authorization'] ?? null) !== false) {
-            $headers['Authorization'] = 'Bearer ' . $accessToken;
-        }
-
         if (isset($options['json']) && $method !== 'GET') {
             $options['json']['clientId'] = $this->clientId;
             $options['json']['clientSecret'] = $this->clientSecret;
@@ -86,40 +77,5 @@ class Client
         ]));
 
         return json_decode($response->getBody(), true);
-    }
-
-    /**
-     * @param mixed[] $options Request options
-     * @return mixed[] Response from api, always json
-     *
-     * <code>
-     * $client->requestWithRetry(['method' => 'GET', 'url' => 'https://google.fr']);
-     * </code>
-     */
-    public function requestWithRetry($options)
-    {
-        try {
-            $response = $this->request($options);
-        } catch (RequestException $error) {
-            if ($error->getResponse()->getStatusCode() === 403 && isset($this->auth->refreshToken)) {
-                $tokens = $this->request([
-                    'method' => 'POST',
-                    'resource' => '/subscribe/auth/token',
-                    'json' => [
-                        'grantType' => 'refresh_token',
-                        'refreshToken' => $this->auth->refreshToken,
-                    ],
-                ]);
-
-                $this->auth->accessToken = $tokens['accessToken'];
-                $this->auth->refreshToken = $tokens['refreshToken'];
-
-                $response = $this->request($options);
-            } else {
-                throw $error;
-            }
-        }
-
-        return $response;
     }
 }

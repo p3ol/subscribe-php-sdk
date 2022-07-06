@@ -32,8 +32,6 @@ class AuthTest extends TestCase
         self::$client = new Client([
             'clientId' => 'test',
             'clientSecret' => 'test',
-            'accessToken' => 'test',
-            'refreshToken' => 'test',
         ], $httpClient);
         self::$auth = new Auth(self::$client);
     }

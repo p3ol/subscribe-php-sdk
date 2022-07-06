@@ -5,8 +5,6 @@ namespace Poool\Subscribe\SDK;
 class Auth
 {
     private Client $client;
-    public $accessToken;
-    public $refreshToken;
 
     /**
      * @param Client $client - SDK client
@@ -15,17 +13,9 @@ class Auth
      * $auth = new Auth($client);
      * </code>
      */
-    public function __construct($client, $options = [])
+    public function __construct($client)
     {
         $this->client = $client;
-
-        if (isset($options['accessToken'])) {
-            $this->accessToken = $options['accessToken'];
-        }
-
-        if (isset($options['refreshToken'])) {
-            $this->refreshToken = $options['refreshToken'];
-        }
     }
 
     /**
