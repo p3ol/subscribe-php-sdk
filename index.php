@@ -4,17 +4,16 @@ require_once "vendor/autoload.php";
 
 $httpClient = new \GuzzleHttp\Client(['verify' => false]);
 $client = new \Poool\Subscribe\SDK\Client([
-    'clientId' => '0893042862168465',
-    'clientSecret' => '23WfqB4TbdKm1TnkQ0QrAIv4nZuQcHQ9'
+    'clientId' => '8229685410804140',
+    'clientSecret' => 'Cxs1fey6CBGg8ghErxba200u0ZgAdbeJ',
+    'debug' => false,
 ], $httpClient);
 
 $offers = $client->offers->list();
 echo '<h2>offers->list()</h2><pre>' . print_r($offers, true) . '</pre>';
 
-$tokens = $client->auth->signin('ugo+test1@poool.fr', 'lol');
-echo '<h2>auth->signin()</h2><pre>' . print_r($tokens, true) . '</pre>';
 
-$callback = $client->auth->createCallback('bearer', 'http://localhost');
+$callback = $client->auth->createCallback('password', 'http://localhost', 'john@doe.fr', 'aaa');
 echo '<h2>auth->createCallback()</h2><pre>' . print_r($callback, true) . '</pre>';
 
 $verify = $client->auth->verifyCallback($callback['callbackId']);
