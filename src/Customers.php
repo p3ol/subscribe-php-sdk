@@ -88,20 +88,21 @@ class Customers
      * @param string $id Customer ID
      * @param string $subscriptionId Subscription ID
      * @param string $offerId Offer ID or slug
-     * @param mixed[] $options (optional) Guzzle request options
+     * @param mixed[] $options [price => string, ...guzzleOptions]
      * @return mixed[] Customer object
      *
      * <code>
      * $customers->switchSubscriptionOffer('customer-1', 'subscription-1', 'offer-1');
      * </code>
      */
-    public function switchSubscriptionOffer($id, $subscriptionId, $offerId, $options = [])
+    public function switchSubscriptionOffer($id, $subscriptionId, $offerId, $options = ['price' => null])
     {
         return $this->client->request(array_merge($options, [
             'method' => 'POST',
             'resource' => '/subscribe/customers/' . $id . '/subscriptions/' . $subscriptionId . '/change',
             'json' => [
                 'offer' => $offerId,
+                'price' => $options['price']
             ],
         ]));
     }

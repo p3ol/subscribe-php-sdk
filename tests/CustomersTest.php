@@ -24,6 +24,7 @@ class CustomersTest extends TestCase
             new Response(200, [], '{ "username": "user@test.com", "subscription": { "id": "subscription-1" } }'),
             new Response(200, [], '{ "username": "user@test.com", "subscription": { "id": "subscription-1" } }'),
             new Response(200, [], '{ "username": "user@test.com", "subscription": { "id": "subscription-1" } }'),
+            new Response(200, [], '{ "username": "user@test.com", "subscription": { "id": "subscription-1", "price": "price_id" } }'),
         ]);
         $handlerStack = HandlerStack::create($mock);
         $httpClient = new \GuzzleHttp\Client(['handler' => $handlerStack]);
@@ -100,5 +101,17 @@ class CustomersTest extends TestCase
         $result = self::$customers->reactivateSubscription('customer-1', 'subscription-1');
         $this->assertSame($result['username'], 'user@test.com');
         $this->assertSame($result['subscription']['id'], 'subscription-1');
+    }
+
+    /**
+     * @covers \Poool\Subscribe\SDK\Client::request
+     * @covers \Poool\Subscribe\SDK\Customers::switchSubscriptionOffer
+     */
+    public function testswitchSubscriptionWithPrice()
+    {
+        $result = self::$customers->switchSubscriptionOffer('customer-1', 'subscription-1', 'offer-1', ['price' => 'price_id']);
+        $this->assertSame($result['username'], 'user@test.com');
+        $this->assertSame($result['subscription']['id'], 'subscription-1');
+        $this->assertSame($result['subscription']['price'], 'price_id');
     }
 }
