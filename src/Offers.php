@@ -33,8 +33,15 @@ class Offers
      * $offers->list(1, 10, 'active', false, ['slug1', 'slug2']);
      * </code>
      */
-    public function list($page = 1, $count = 10, $status = 'active', $sandbox = false, $include = [], $exclude = [], $options = [])
-    {
+    public function list(
+        $page = 1,
+        $count = 10,
+        $status = 'active',
+        $sandbox = false,
+        $include = [],
+        $exclude = [],
+        $options = []
+    ) {
         return $this->client->request(array_merge($options, [
             'method' => 'GET',
             'resource' => '/subscribe/offers',
