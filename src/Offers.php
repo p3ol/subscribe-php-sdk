@@ -23,16 +23,17 @@ class Offers
      * @param int $page (optional) Current page of results
      * @param int $count (optional) Count per page
      * @param string $status (optional) Status of the offer (active, archived, all)
+     * @param bool $sandbox (optional) Live or test mode (default: false)
      * @param string[] $include (optional) List of included slugs
      * @param string[] $exclude (optional) List of excluded slugs
      * @param mixed[] $options (optional) Guzzle request options
      * @return mixed[] Array of offers objects
      *
      * <code>
-     * $offers->list(1, 10, 'active', ['slug1', 'slug2']);
+     * $offers->list(1, 10, 'active', false, ['slug1', 'slug2']);
      * </code>
      */
-    public function list($page = 1, $count = 10, $status = 'active', $include = [], $exclude = [], $options = [])
+    public function list($page = 1, $count = 10, $status = 'active', $sandbox = false, $include = [], $exclude = [], $options = [])
     {
         return $this->client->request(array_merge($options, [
             'method' => 'GET',
@@ -41,6 +42,7 @@ class Offers
                 'page' => $page,
                 'count' => $count,
                 'status' => $status,
+                'sandbox' => $sandbox,
                 'include' => $include,
                 'exclude' => $exclude,
             ],
