@@ -10,7 +10,7 @@
         "homepage": "https://poool.dev"
     }],
     "require": {
-        "php" : ">=8.0.0",
+        "php" : ">=8.1.0",
         "guzzlehttp/guzzle": "^7.0"
     },
     "require-dev": {
