@@ -36,7 +36,6 @@ class Offers
         $page = 1,
         $count = 10,
         $status = 'active',
-        $sandbox = false,
         $include = [],
         $exclude = [],
         $reqOptions = []
@@ -48,7 +47,6 @@ class Offers
                 'page' => $page,
                 'count' => $count,
                 'status' => $status,
-                'sandbox' => $sandbox,
                 'include' => $include,
                 'exclude' => $exclude,
             ],
