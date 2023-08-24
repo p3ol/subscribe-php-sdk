@@ -23,10 +23,9 @@ class Offers
      * @param int $page (optional) Current page of results
      * @param int $count (optional) Count per page
      * @param string $status (optional) Status of the offer (active, archived, all)
-     * @param bool $sandbox (optional) Live or test mode (default: false)
      * @param string[] $include (optional) List of included slugs
      * @param string[] $exclude (optional) List of excluded slugs
-     * @param mixed[] $options (optional) Guzzle request options
+     * @param mixed[] $reqOptions (optional) Guzzle request options
      * @return mixed[] Array of offers objects
      *
      * <code>
@@ -40,9 +39,9 @@ class Offers
         $sandbox = false,
         $include = [],
         $exclude = [],
-        $options = []
+        $reqOptions = []
     ) {
-        return $this->client->request(array_merge($options, [
+        return $this->client->request(array_merge($reqOptions, [
             'method' => 'GET',
             'resource' => '/subscribe/offers',
             'query' => [
@@ -59,16 +58,16 @@ class Offers
     /**
      * Get a particular
      * @param string $id Offer ID or slug
-     * @param mixed[] $options (optional) Guzzle request options
+     * @param mixed[] $reqOptions (optional) Guzzle request options
      * @return mixed[] Offer object
      *
      * <code>
      * $offers->get('offer-1');
      * </code>
      */
-    public function get($id, $options = [])
+    public function get($id, $reqOptions = [])
     {
-        return $this->client->request(array_merge($options, [
+        return $this->client->request(array_merge($reqOptions, [
             'method' => 'GET',
             'resource' => '/subscribe/offers/' . $id,
         ]));

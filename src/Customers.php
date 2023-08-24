@@ -21,16 +21,16 @@ class Customers
     /**
      * Get a particular customer
      * @param string $id Customer ID
-     * @param mixed[] $options (optional) Guzzle request options
+     * @param mixed[] $reqOptions (optional) Guzzle request options
      * @return mixed[] Customer object
      *
      * <code>
      * $customers->get('customer-1');
      * </code>
      */
-    public function get($id, $options = [])
+    public function get($id, $reqOptions = [])
     {
-        return $this->client->request(array_merge($options, [
+        return $this->client->request(array_merge($reqOptions, [
             'method' => 'GET',
             'resource' => '/subscribe/customers/' . $id,
         ]));
@@ -40,7 +40,7 @@ class Customers
      * Update a particular customer
      * @param string $id Customer ID
      * @param mixed[] $updates Updates to apply
-     * @param mixed[] $options (optional) Guzzle request options
+     * @param mixed[] $reqOptions (optional) Guzzle request options
      * @return mixed[] Customer object
      *
      * <code>
@@ -50,9 +50,9 @@ class Customers
      * ]);
      * </code>
      */
-    public function set($id, $updates, $options = [])
+    public function set($id, $updates, $reqOptions = [])
     {
-        return $this->client->request(array_merge($options, [
+        return $this->client->request(array_merge($reqOptions, [
             'method' => 'POST',
             'resource' => '/subscribe/customers/' . $id,
             'json' => $updates,
@@ -64,7 +64,7 @@ class Customers
      * @param string $id Customer ID
      * @param string $gateway Gateway name (stripe, paypal)
      * @param mixed[] $subscriptionData Subscription data
-     * @param mixed[] $options (optional) Guzzle request options
+     * @param mixed[] $reqOptions (optional) Guzzle request options
      * @return mixed[] Customer object
      *
      * <code>
@@ -74,9 +74,9 @@ class Customers
      * ]);
      * </code>
      */
-    public function attachExistingSubscription($id, $gateway, $subscriptionData, $options = [])
+    public function attachExistingSubscription($id, $gateway, $subscriptionData, $reqOptions = [])
     {
-        return $this->client->request(array_merge($options, [
+        return $this->client->request(array_merge($reqOptions, [
             'method' => 'POST',
             'resource' => '/subscribe/customers/' . $id . '/subscriptions/' . $gateway . '/add/external',
             'json' => $subscriptionData,
@@ -111,16 +111,16 @@ class Customers
      * Cancel a customer's subscription
      * @param string $id Customer ID
      * @param string $subscriptionId Subscription ID
-     * @param mixed[] $options (optional) Guzzle request options
+     * @param mixed[] $reqOptions (optional) Guzzle request options
      * @return mixed[] Customer object
      *
      * <code>
      * $customers->cancelSubscription('customer-1', 'subscription-1');
      * </code>
      */
-    public function cancelSubscription($id, $subscriptionId, $options = [])
+    public function cancelSubscription($id, $subscriptionId, $reqOptions = [])
     {
-        return $this->client->request(array_merge($options, [
+        return $this->client->request(array_merge($reqOptions, [
             'method' => 'POST',
             'resource' => '/subscribe/customers/' . $id . '/subscriptions/' . $subscriptionId . '/cancel',
         ]));
@@ -130,16 +130,16 @@ class Customers
      * Reactivate a canceled customer's subscription
      * @param string $id Customer ID
      * @param string $subscriptionId Subscription ID
-     * @param mixed[] $options (optional) Guzzle request options
+     * @param mixed[] $reqOptions (optional) Guzzle request options
      * @return mixed[] Customer object
      *
      * <code>
      * $customers->reactivateSubscription('customer-1', 'subscription-1');
      * </code>
      */
-    public function reactivateSubscription($id, $subscriptionId, $options = [])
+    public function reactivateSubscription($id, $subscriptionId, $reqOptions = [])
     {
-        return $this->client->request(array_merge($options, [
+        return $this->client->request(array_merge($reqOptions, [
             'method' => 'POST',
             'resource' => '/subscribe/customers/' . $id . '/subscriptions/' . $subscriptionId . '/reactivate',
         ]));
