@@ -41,6 +41,7 @@ $client->offers->list(1, 10, [], [], 'active', ['sandbox' => true]);
 
 ## v1 to v2
 
+- Now requires php >= 8.1
 - `customers.switchSubscriptionOffer(customerId, subscriptionId, offer, requestOptions)` becomes `customers.switchSubscriptionOffer(customerId, subscriptionId, offer, **{ priceId }**, requestOptions)` -> it now takes an additional parameter before request options to speficy offer options like price id
 - `sandbox: true|false` is now an option on every request (instead of only offers list) and has been removed from `offers.list()`
 - `offers.list(page, count, status, include, exclude)` becomes `offers.list(page, count, include, exclude, **status**, requestOptions)` -> it is moved to the end of the parameters list to be consistent with other SDKs.
