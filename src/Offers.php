@@ -22,9 +22,9 @@ class Offers
      * List all available offers
      * @param int $page (optional) Current page of results
      * @param int $count (optional) Count per page
-     * @param string $status (optional) Status of the offer (active, archived, all)
      * @param string[] $include (optional) List of included slugs
      * @param string[] $exclude (optional) List of excluded slugs
+     * @param string $status (optional) Status of the offer (active, archived, all)
      * @param mixed[] $reqOptions (optional) Guzzle request options
      * @return mixed[] Array of offers objects
      *
@@ -35,9 +35,9 @@ class Offers
     public function list(
         $page = 1,
         $count = 10,
-        $status = 'active',
         $include = [],
         $exclude = [],
+        $status = 'active',
         $reqOptions = []
     ) {
         return $this->client->request(array_merge($reqOptions, [
@@ -46,9 +46,9 @@ class Offers
             'query' => [
                 'page' => $page,
                 'count' => $count,
-                'status' => $status,
                 'include' => $include,
                 'exclude' => $exclude,
+                'status' => $status,
             ],
         ]));
     }
