@@ -59,7 +59,7 @@ class Client
             unset($options['resource']);
         }
 
-        if ($options['sandbox']) {
+        if (isset($options['sandbox'])) {
             $headers['Sandbox'] = true;
             unset($options['sandbox']);
         }
