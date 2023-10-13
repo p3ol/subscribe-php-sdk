@@ -59,6 +59,11 @@ class Client
             unset($options['resource']);
         }
 
+        if ($options['sandbox']) {
+            $headers['Sandbox'] = true;
+            unset($options['sandbox']);
+        }
+
         if ($method === 'GET') {
             $options['query'] = array_merge($options['query'] ?? [], [
                 'clientId' => $this->clientId,
