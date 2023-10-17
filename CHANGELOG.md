@@ -2,6 +2,15 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [2.0.1](https://github.com/p3ol/subscribe-php-sdk/compare/v2.0.0...v2.0.1) (2023-10-17)
+
+
+### Bug Fixes
+
+* add missing sandbox options ([4f30372](https://github.com/p3ol/subscribe-php-sdk/commit/4f3037263f49f4cec823d7da20d2aaa67b3b543c))
+* fix failing tests ([7bd0ee4](https://github.com/p3ol/subscribe-php-sdk/commit/7bd0ee4d0fc838bdfbd24d9d28177d8ef815b279))
+* fix undefined array key warning ([5b2321f](https://github.com/p3ol/subscribe-php-sdk/commit/5b2321fddff75b331e3fde5c44e68af912242389))
+
 ## [2.0.0](https://github.com/p3ol/subscribe-php-sdk/compare/v1.0.0...v2.0.0) (2023-08-24)
 
 
