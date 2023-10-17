@@ -1,6 +1,6 @@
 {
     "name": "poool/subscribe-sdk",
-    "version": "2.0.0",
+    "version": "2.0.1",
     "description": "Poool Subscribe SDK for PHP 🚀",
     "homepage": "https://github.com/p3ol/subscribe-php-sdk",
     "license": "MIT",
