@@ -109,7 +109,7 @@ class CustomersTest extends TestCase
      */
     public function testswitchSubscriptionWithPrice()
     {
-        $result = self::$customers->switchSubscriptionOffer('customer-1', 'subscription-1', 'offer-1', ['price' => 'price_id']);
+        $result = self::$customers->switchSubscriptionOffer('customer-1', 'subscription-1', 'offer-1', ['priceId' => 'price_id']);
         $this->assertSame($result['username'], 'user@test.com');
         $this->assertSame($result['subscription']['id'], 'subscription-1');
         $this->assertSame($result['subscription']['price'], 'price_id');

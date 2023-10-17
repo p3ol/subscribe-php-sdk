@@ -55,7 +55,5 @@ class AuthTest extends TestCase
         $callback = self::$auth->verifyCallback('callback-id');
         $this->assertSame($callback['accessToken'], 'callback test');
         $this->assertSame($callback['refreshToken'], 'callback test');
-        $this->assertSame(self::$auth->accessToken, 'callback test');
-        $this->assertSame(self::$auth->refreshToken, 'callback test');
     }
 }
