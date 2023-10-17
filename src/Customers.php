@@ -97,8 +97,13 @@ class Customers
      * $customers->switchSubscriptionOffer('customer-1', 'subscription-1', 'offer-1', ['priceId' => 'price-1']]);
      * </code>
      */
-    public function switchSubscriptionOffer($id, $subscriptionId, $offerId, $offerOptions = ['priceId' => null], $reqOptions = [])
-    {
+    public function switchSubscriptionOffer(
+        $id,
+        $subscriptionId,
+        $offerId,
+        $offerOptions = ['priceId' => null],
+        $reqOptions = []
+    ) {
         return $this->client->request(array_merge($reqOptions, [
             'method' => 'POST',
             'resource' => '/subscribe/customers/' . $id . '/subscriptions/' . $subscriptionId . '/change',
